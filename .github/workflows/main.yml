@@ -5,7 +5,7 @@ jobs:
     name: test ssh
     runs-on: ubuntu-latest
     env:
-      ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
+      ID_RSA: ${{ secrets.ID_RSA }}
 
     steps:
       - name: Checkout
