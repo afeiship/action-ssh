@@ -17,4 +17,7 @@ jobs:
       - name: Debug
         run: |
           # list dir
-          ssh -T ubuntu@111.229.34.137
+          ssh ubuntu@111.229.34.137 <<'ENDSSH'
+          cd ~/github
+          ls -alh
+          ENDSSH
