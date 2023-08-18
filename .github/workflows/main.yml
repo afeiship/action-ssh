@@ -17,9 +17,4 @@ jobs:
       - name: Debug
         run: |
           # list dir
-          cd ~/github
-          ls -alh
-
-          # list .ssh
-          cd ~/.ssh
-          ls -alh
+          ssh -T ubuntu@111.229.34.137
