@@ -16,4 +16,10 @@ jobs:
 
       - name: Debug
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ubuntu@111.229.34.137 "cd ~/github && ls -alh"
+          ssh_options="-i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
+          remote_commands=(
+            "cd ~/github"
+            "ls -alh"
+          )
+          ssh_command="ssh $ssh_options ubuntu@111.229.34.137 '${remote_commands[*]}'"
+          $ssh_command
