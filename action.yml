@@ -9,6 +9,11 @@ runs:
     - name: Install coscli cli
       shell: bash
       run: |
+        # install ssh
         mkdir -p ~/.ssh
         echo "$ID_RSA" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+
+        # set env
+        echo "SSH_OPTIONS=-i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" >> $GITHUB_ENV
+
