@@ -20,5 +20,8 @@ jobs:
             "cd ~/github"
             "ls -alh"
           )
-          ssh_command="ssh $SSH_OPTIONS ubuntu@111.229.34.137 '${remote_commands[*]}'"
-          $ssh_command
+
+          # join with &&
+          remote_command_string=$(IFS='&&'; echo "${remote_commands[*]}")
+          ssh_command="ssh $SSH_OPTIONS ubuntu@111.229.34.137 $remote_command_string"
+          $remote_command_string
