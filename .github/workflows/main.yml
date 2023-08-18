@@ -16,4 +16,7 @@ jobs:
 
       - name: Debug
         run: |
-          ssh $SSH_OPTIONS ubuntu@111.229.34.137 "cd ~/github && ls -alh"
+          ssh $SSH_OPTIONS ubuntu@111.229.34.137 <<'ENDSSH'
+          cd ~/github
+          ls -alh
+          ENDSSH
