@@ -16,4 +16,8 @@ jobs:
 
       - name: Debug
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ubuntu@111.229.34.137 "echo 'hello world'"
+          ssh ubuntu@111.229.34.137 <<'ENDSSH'
+            echo 1234;
+            cd ~/github
+            ls -alh
+          ENDSSH
