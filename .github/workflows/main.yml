@@ -16,12 +16,4 @@ jobs:
 
       - name: Debug
         run: |
-          remote_commands=(
-            "cd ~/github"
-            "ls -alh"
-          )
-
-          # join with &&
-          remote_command_string=$(IFS='&&'; echo "${remote_commands[*]}")
-          ssh_command="ssh $SSH_OPTIONS ubuntu@111.229.34.137 $remote_command_string"
-          $remote_command_string
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ubuntu@111.229.34.137 "cd ~/github && ls -alh"
