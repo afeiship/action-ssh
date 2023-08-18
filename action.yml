@@ -1,5 +1,10 @@
 name: Action for ssh
 description: Github action for ssh
+author: afeiship
+inputs: 
+  id_rsa:
+    description: The id_rsa
+    required: true
 outputs: {}
 
 runs:
@@ -9,7 +14,5 @@ runs:
       shell: bash
       run: |
         mkdir -p ~/.ssh
-        echo "$ID_RSA" > ~/.ssh/id_rsa
+        echo "${{ inputs.id_rsa }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-
-    
