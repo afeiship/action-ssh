@@ -1,0 +1,25 @@
+name: ssh test workflow
+on: [push]
+jobs:
+  hello:
+    name: test ssh
+    runs-on: ubuntu-latest
+    env:
+      ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use SSH
+        uses: afeiship/action-ssh@master
+
+      - name: Debug
+        run: |
+          # list dir
+          cd ~/github
+          ls -alh
+
+          # list .ssh
+          cd ~/.ssh
+          ls -alh

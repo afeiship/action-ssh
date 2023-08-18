@@ -1,11 +1,46 @@
-# next-dom-owner
-> Dom helpers ownerDocument/ownerWindow based on next toolkit.
+# action-ssh
+> Github actions for coscli.
 
-## size:
-+ [ default size ]: all files 632 B
-+ [ minimize size ]: all files 388 B
+## usgae
+```yml
+- name: Use coscli
+  uses: afeiship/action-ssh@1.0.0
+```
 
-## resources:
+## config
+```shell
+gh secret set -f ~/.tencent/.env.wms.dicfree.cn
+```
 
-## todos:
-- [ ] todo list..
+## full
+```yml
+name: coscli test workflow
+on: [push]
+jobs:
+  hello:
+    name: test coscli
+    runs-on: ubuntu-latest
+    env:
+      COS_YML: ${{ secrets.COS_YML }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use coscli
+        uses: afeiship/action-ssh@master
+
+      - name: Debug
+        run: |
+          #check env
+          printenv
+          coscli --version
+
+          # show config
+          coscli config show
+
+          # check .cos.yml file exists
+          cd ~
+          ls -alh
+          cat .cos.yaml
+```
