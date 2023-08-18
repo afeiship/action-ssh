@@ -9,38 +9,31 @@
 
 ## config
 ```shell
-gh secret set -f ~/.tencent/.env.wms.dicfree.cn
+gh secret set ID_RSA -b "$(cat ~/.ssh/id_rsa)"
 ```
 
 ## full
 ```yml
-name: coscli test workflow
+name: ssh test workflow
 on: [push]
 jobs:
   hello:
-    name: test coscli
+    name: test ssh
     runs-on: ubuntu-latest
     env:
-      COS_YML: ${{ secrets.COS_YML }}
+      ID_RSA: ${{ secrets.ID_RSA }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use coscli
+      - name: Use SSH
         uses: afeiship/action-ssh@master
 
       - name: Debug
         run: |
-          #check env
-          printenv
-          coscli --version
-
-          # show config
-          coscli config show
-
-          # check .cos.yml file exists
-          cd ~
+          ssh $SSH_OPTIONS ubuntu@111.229.34.137 <<'ENDSSH'
+          cd ~/github
           ls -alh
-          cat .cos.yaml
+          ENDSSH
 ```
